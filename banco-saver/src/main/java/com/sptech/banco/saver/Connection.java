@@ -5,28 +5,18 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 public class Connection {
 
-    private JdbcTemplate connection; 
-    
-    // Exemplo de configuração utilizando H2
-    // Obs. O código comentado é um exemplo de como se conectar ao mysql
+    private JdbcTemplate connection;
+
     public Connection() {
         BasicDataSource datasource = new BasicDataSource();
-
-//        datasource.setDriverClassName("org.h2.Driver");
-//        
-//        datasource.setUrl("jdbc:h2:file:./meu_banco");
-//               
-//        datasource.setUsername("sa");
-
-        //datasource.setPassword("");
         
-        datasource.setDriverClassName("com.mysql.cj.jdbc.Driver");
+        datasource.setDriverClassName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
         
-        datasource.setUrl("jdbc:mysql://localhost:3306/saver");
+        datasource.setUrl("jdbc:sqlserver://saverm.database.windows.net/saver");
         
-        datasource.setUsername("aluno");
+        datasource.setUsername("saver");
         
-        datasource.setPassword("sptech");
+        datasource.setPassword("S4v3rM0n");
         
         connection = new JdbcTemplate(datasource);
     }
