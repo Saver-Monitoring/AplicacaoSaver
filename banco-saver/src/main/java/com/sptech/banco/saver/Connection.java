@@ -10,13 +10,21 @@ public class Connection {
     public Connection() {
         BasicDataSource datasource = new BasicDataSource();
         
-        datasource.setDriverClassName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-        
-        datasource.setUrl("jdbc:sqlserver://saverm.database.windows.net/saver");
-        
-        datasource.setUsername("saver");
-        
-        datasource.setPassword("S4v3rM0n");
+        //datasource.setDriverClassName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+        //
+        //datasource.setUrl("jdbc:sqlserver://saverm.database.windows.net/saver");
+        //
+        //datasource.setUsername("saver");
+        //
+        //datasource.setPassword("S4v3rM0n");
+
+        datasource.setDriverClassName("com.mysql.cj.jdbc.Driver");
+
+        datasource.setUrl("jdbc:mysql://localhost:3306/saver");
+
+        datasource.setUsername("root");
+
+        datasource.setPassword("80447341");
         
         connection = new JdbcTemplate(datasource);
     }
