@@ -20,7 +20,7 @@ public class Connection {
 
         datasource.setDriverClassName("com.mysql.cj.jdbc.Driver");
 
-        datasource.setUrl("jdbc:mysql://localhost:3306/saver");
+        datasource.setUrl("jdbc:mysql://127.0.0.1:3306/saver?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
 
         datasource.setUsername("root");
 

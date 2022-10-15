@@ -31,5 +31,10 @@ public class ColetaDeDados {
 
         System.out.println(sistema);
         System.out.println(memoria);
+        System.out.println(processador);
+        System.out.println(temperatura);
+        System.out.println(discos);
+        System.out.println(grupoDeServicos);
+        System.out.println(todosProcessos);
     }
 }

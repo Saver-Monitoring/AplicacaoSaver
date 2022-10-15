@@ -1,7 +1,8 @@
 
 package com.sptech.banco.saver;
 
-import java.awt.Color;
+import java.awt.*;
+import java.awt.event.WindowEvent;
 import java.util.List;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -163,6 +164,9 @@ public class swingSaver extends javax.swing.JFrame {
                 String resultado = "LOGIN FEITO COM SUCESSO!";
                 lblResultado.setForeground(Color.blue);
                 lblResultado.setText(resultado.toString());
+                Window frame;
+                frame = new swingSaver();
+                frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
             }else{
                 String resultado = "USUÁRIO NÃO CADASTRADO";
                 lblResultado.setForeground(Color.red);
