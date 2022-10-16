@@ -23,9 +23,12 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
+          <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="lblSistema" min="-2" pref="74" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="lblSistema" pref="74" max="32767" attributes="0"/>
+                  <Component id="lblProcessador" max="32767" attributes="0"/>
+              </Group>
               <EmptySpace pref="314" max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -35,7 +38,9 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="120" max="-2" attributes="0"/>
               <Component id="lblSistema" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="166" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="lblProcessador" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="145" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -43,7 +48,12 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="lblSistema">
       <Properties>
-        <Property name="text" type="java.lang.String" value="."/>
+        <Property name="text" type="java.lang.String" value="--"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblProcessador">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="--"/>
       </Properties>
     </Component>
   </SubComponents>

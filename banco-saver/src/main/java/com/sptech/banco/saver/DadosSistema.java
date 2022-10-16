@@ -5,21 +5,47 @@
 package com.sptech.banco.saver;
 
 import com.github.britooo.looca.api.core.Looca;
+import com.github.britooo.looca.api.group.discos.Disco;
+import com.github.britooo.looca.api.group.discos.DiscoGrupo;
+import com.github.britooo.looca.api.group.memoria.Memoria;
+import com.github.britooo.looca.api.group.processador.Processador;
+import com.github.britooo.looca.api.group.processos.ProcessoGrupo;
+import com.github.britooo.looca.api.group.servicos.ServicoGrupo;
+import com.github.britooo.looca.api.group.sistema.Sistema;
+import com.github.britooo.looca.api.group.temperatura.Temperatura;
+import java.util.List;
 
 /**
  *
  * @author gabri
  */
 public class DadosSistema extends javax.swing.JFrame {
+    Looca looca = new Looca();
     
+        Sistema sistema = looca.getSistema();
+        Memoria memoria = looca.getMemoria();
+        Processador processador = looca.getProcessador();
+        Temperatura temperatura = looca.getTemperatura();
+        //Criação do gerenciador
+        DiscoGrupo grupoDeDiscos = looca.getGrupoDeDiscos();
+        //Obtendo lista de discos a partir do getter
+        List<Disco> discos = grupoDeDiscos.getDiscos();
+        ServicoGrupo grupoDeServicos = looca.getGrupoDeServicos();
+        ProcessoGrupo todosProcessos = looca.getGrupoDeProcessos();
     
-
+        
     /**
      * Creates new form DadosSistema
      */
     public DadosSistema() {
         initComponents();
         this.setResizable(false);
+        this.Tela();
+    }
+    
+    public void Tela(){
+        lblSistema.setText(String.format("▶ %s", sistema.getSistemaOperacional()));
+        lblProcessador.setText(String.format("▶ %s", processador.getNome()));
     }
     
     
@@ -36,10 +62,13 @@ public class DadosSistema extends javax.swing.JFrame {
     private void initComponents() {
 
         lblSistema = new javax.swing.JLabel();
+        lblProcessador = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        lblSistema.setText(".");
+        lblSistema.setText("--");
+
+        lblProcessador.setText("--");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -47,7 +76,9 @@ public class DadosSistema extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblSistema, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblSistema, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE)
+                    .addComponent(lblProcessador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(314, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -55,7 +86,9 @@ public class DadosSistema extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(120, 120, 120)
                 .addComponent(lblSistema)
-                .addContainerGap(166, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblProcessador)
+                .addContainerGap(145, Short.MAX_VALUE))
         );
 
         pack();
@@ -97,6 +130,7 @@ public class DadosSistema extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel lblProcessador;
     private javax.swing.JLabel lblSistema;
     // End of variables declaration//GEN-END:variables
 }
