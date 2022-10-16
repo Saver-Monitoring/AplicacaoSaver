@@ -12,7 +12,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
  * @author aluno
  */
 public class swingSaver extends javax.swing.JFrame {
-
     /**
      * Creates new form swingSaver
      */
@@ -62,7 +61,7 @@ public class swingSaver extends javax.swing.JFrame {
         lblSenha.setText("Senha:");
 
         txtEmail.setForeground(new java.awt.Color(204, 204, 204));
-        txtEmail.setText("");
+        txtEmail.setText("email");
         txtEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtEmailActionPerformed(evt);
@@ -70,7 +69,7 @@ public class swingSaver extends javax.swing.JFrame {
         });
 
         txtSenha.setForeground(new java.awt.Color(204, 204, 204));
-        txtSenha.setText("");
+        txtSenha.setText("senha");
         txtSenha.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         txtSenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -130,13 +129,13 @@ public class swingSaver extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addComponent(lblEmail)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addGap(28, 28, 28)
                 .addComponent(lblSenha)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addGap(29, 29, 29)
@@ -150,9 +149,10 @@ public class swingSaver extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {
-        //GEN-FIRST:event_btnEntrarActionPerformed
+//GEN-FIRST:event_btnEntrarActionPerformed
         Connection connection = new Connection();
         JdbcTemplate con = connection.getConnection();
+        DadosSistema Dados = new DadosSistema();
 
         String email = String.valueOf(txtEmail.getText());
         String senha = String.valueOf(txtSenha.getText());
@@ -165,9 +165,14 @@ public class swingSaver extends javax.swing.JFrame {
                 String resultado = "LOGIN FEITO COM SUCESSO!";
                 lblResultado.setForeground(Color.blue);
                 lblResultado.setText(resultado.toString());
-                Window frame;
-                frame = new swingSaver();
-                frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
+//                Window frame;
+//                frame = new swingSaver();
+                dispose();
+                Dados.setVisible(true);
+//                frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
+                
+                
+                
             }else{
                 String resultado = "USUÁRIO NÃO CADASTRADO";
                 lblResultado.setForeground(Color.red);
