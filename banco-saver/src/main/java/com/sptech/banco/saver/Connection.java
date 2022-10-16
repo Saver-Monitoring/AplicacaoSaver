@@ -10,21 +10,21 @@ public class Connection {
     public Connection() {
         BasicDataSource datasource = new BasicDataSource();
         
-        //datasource.setDriverClassName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-        //
-        //datasource.setUrl("jdbc:sqlserver://saverm.database.windows.net/saver");
-        //
-        //datasource.setUsername("saver");
-        //
-        //datasource.setPassword("S4v3rM0n");
+        datasource.setDriverClassName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 
-        datasource.setDriverClassName("com.mysql.cj.jdbc.Driver");
+        datasource.setUrl("jdbc:sqlserver://saverm.database.windows.net:1433;database=saver;user=saver@saverm;password={your_password_here};encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;");
 
-        datasource.setUrl("jdbc:mysql://127.0.0.1:3306/saver?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
+        datasource.setUsername("saver");
 
-        datasource.setUsername("root");
-
-        datasource.setPassword("80447341");
+        datasource.setPassword("S4v3rM0n");
+//
+        //datasource.setDriverClassName("com.mysql.cj.jdbc.Driver");
+//
+        //datasource.setUrl("jdbc:mysql://localhost:3306/saver?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
+//
+        //datasource.setUsername("root");
+//
+        //datasource.setPassword("80447341");
         
         connection = new JdbcTemplate(datasource);
     }

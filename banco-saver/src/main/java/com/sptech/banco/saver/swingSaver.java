@@ -62,7 +62,7 @@ public class swingSaver extends javax.swing.JFrame {
         lblSenha.setText("Senha:");
 
         txtEmail.setForeground(new java.awt.Color(204, 204, 204));
-        txtEmail.setText("email");
+        txtEmail.setText("");
         txtEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtEmailActionPerformed(evt);
@@ -70,7 +70,7 @@ public class swingSaver extends javax.swing.JFrame {
         });
 
         txtSenha.setForeground(new java.awt.Color(204, 204, 204));
-        txtSenha.setText("senha");
+        txtSenha.setText("");
         txtSenha.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         txtSenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -149,7 +149,8 @@ public class swingSaver extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
+    private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {
+        //GEN-FIRST:event_btnEntrarActionPerformed
         Connection connection = new Connection();
         JdbcTemplate con = connection.getConnection();
 
