@@ -14,7 +14,6 @@ import com.github.britooo.looca.api.group.servicos.ServicoGrupo;
 import com.github.britooo.looca.api.group.sistema.Sistema;
 import com.github.britooo.looca.api.group.temperatura.Temperatura;
 import java.util.List;
-import java.util.Timer;
 import java.util.TimerTask;
 
 /**
@@ -54,7 +53,6 @@ public class DadosSistema extends javax.swing.JFrame {
                 lblMemoria.setText(String.format("▶ Memória Total: %s", memoria.getTotal()));
                 lblMemoria1.setText(String.format("▶ Memória Em uso: %s", memoria.getEmUso()));
                 lblMemoria2.setText(String.format("▶ Memória Disponível: %s", memoria.getDisponivel()));
-                lblTemperatura.setText(String.format("▶ Temperatura: %s", temperatura.getTemperatura()));
             }
         },0,1000*2);
     }

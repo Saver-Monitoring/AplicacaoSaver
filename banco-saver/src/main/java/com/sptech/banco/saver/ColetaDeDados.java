@@ -40,7 +40,7 @@ public class ColetaDeDados {
         private ProcessoGrupo todosProcessos = looca.getGrupoDeProcessos();
 
     public void insercaoDados() {
-            con.update("INSERT INTO historicoDados(fkComputador, fkRack, temperatura, usoHDD) VALUES " +
-                    "(?, ?, ?, ?, ?, ?) ", idComputador, idRack, temperatura, processador, discos);
+            con.update("INSERT INTO historicoDados(fkComputador, fkRack, usoRAM, usoCPU) VALUES " +
+                    "(?, ?, ?, ?, ?, ?) ", idComputador, idRack, memoria.getEmUso(), processador.getUso());
     }
 }

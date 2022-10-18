@@ -172,7 +172,7 @@ public class swingSaver extends javax.swing.JFrame {
                         dispose();
                         Dados.setVisible(true);
                     }
-                },1000*5,0);
+                },1000*5);
 
             }else{
                 String resultado = "USUÁRIO NÃO CADASTRADO";
