@@ -14,26 +14,28 @@ import com.github.britooo.looca.api.group.servicos.ServicoGrupo;
 import com.github.britooo.looca.api.group.sistema.Sistema;
 import com.github.britooo.looca.api.group.temperatura.Temperatura;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  *
  * @author gabri
  */
 public class DadosSistema extends javax.swing.JFrame {
+
     Looca looca = new Looca();
-    
-        Sistema sistema = looca.getSistema();
-        Memoria memoria = looca.getMemoria();
-        Processador processador = looca.getProcessador();
-        Temperatura temperatura = looca.getTemperatura();
-        //Criação do gerenciador
-        DiscoGrupo grupoDeDiscos = looca.getGrupoDeDiscos();
-        //Obtendo lista de discos a partir do getter
-        List<Disco> discos = grupoDeDiscos.getDiscos();
-        ServicoGrupo grupoDeServicos = looca.getGrupoDeServicos();
-        ProcessoGrupo todosProcessos = looca.getGrupoDeProcessos();
-    
-        
+
+    Sistema sistema = looca.getSistema();
+    Memoria memoria = looca.getMemoria();
+    Processador processador = looca.getProcessador();
+    Temperatura temperatura = looca.getTemperatura();
+    //Criação do gerenciador
+    DiscoGrupo grupoDeDiscos = looca.getGrupoDeDiscos();
+    //Obtendo lista de discos a partir do getter
+    List<Disco> discos = grupoDeDiscos.getDiscos();
+    ServicoGrupo grupoDeServicos = looca.getGrupoDeServicos();
+    ProcessoGrupo todosProcessos = looca.getGrupoDeProcessos();
+
     /**
      * Creates new form DadosSistema
      */
@@ -42,13 +44,20 @@ public class DadosSistema extends javax.swing.JFrame {
         this.setResizable(false);
         this.Tela();
     }
-    
-    public void Tela(){
-        lblSistema.setText(String.format("▶ %s", sistema.getSistemaOperacional()));
-        lblProcessador.setText(String.format("▶ %s", processador.getNome()));
+
+    public void Tela() {
+        new java.util.Timer().schedule(new TimerTask(){
+            @Override
+            public void run() {
+                lblSistema.setText(String.format("▶ Sistema Operacional: %s", sistema.getSistemaOperacional()));
+                lblProcessador.setText(String.format("▶ Processador: %s", processador.getNome()));
+                lblMemoria.setText(String.format("▶ Memória Total: %s", memoria.getTotal()));
+                lblMemoria1.setText(String.format("▶ Memória Em uso: %s", memoria.getEmUso()));
+                lblMemoria2.setText(String.format("▶ Memória Disponível: %s", memoria.getDisponivel()));
+                lblTemperatura.setText(String.format("▶ Temperatura: %s", temperatura.getTemperatura()));
+            }
+        },0,1000*2);
     }
-    
-    
     
 //    lblFabricanteValue.setText(String.format("▶ %s", sistema.getFabricante()));
 
@@ -63,6 +72,10 @@ public class DadosSistema extends javax.swing.JFrame {
 
         lblSistema = new javax.swing.JLabel();
         lblProcessador = new javax.swing.JLabel();
+        lblMemoria1 = new javax.swing.JLabel();
+        lblMemoria = new javax.swing.JLabel();
+        lblMemoria2 = new javax.swing.JLabel();
+        lblTemperatura = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -70,25 +83,45 @@ public class DadosSistema extends javax.swing.JFrame {
 
         lblProcessador.setText("--");
 
+        lblMemoria1.setText("--");
+
+        lblMemoria.setText("--");
+
+        lblMemoria2.setText("--");
+
+        lblTemperatura.setText("--");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblSistema, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE)
-                    .addComponent(lblProcessador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(314, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblMemoria, javax.swing.GroupLayout.DEFAULT_SIZE, 382, Short.MAX_VALUE)
+                    .addComponent(lblMemoria1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblMemoria2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblTemperatura, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblProcessador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblSistema, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(120, 120, 120)
+                .addGap(36, 36, 36)
                 .addComponent(lblSistema)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblProcessador)
-                .addContainerGap(145, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblMemoria)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblMemoria1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblMemoria2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblTemperatura)
+                .addContainerGap(111, Short.MAX_VALUE))
         );
 
         pack();
@@ -130,7 +163,11 @@ public class DadosSistema extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel lblMemoria;
+    private javax.swing.JLabel lblMemoria1;
+    private javax.swing.JLabel lblMemoria2;
     private javax.swing.JLabel lblProcessador;
     private javax.swing.JLabel lblSistema;
+    private javax.swing.JLabel lblTemperatura;
     // End of variables declaration//GEN-END:variables
 }

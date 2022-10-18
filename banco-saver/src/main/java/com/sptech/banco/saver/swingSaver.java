@@ -2,8 +2,9 @@
 package com.sptech.banco.saver;
 
 import java.awt.*;
-import java.awt.event.WindowEvent;
 import java.util.List;
+import java.util.TimerTask;
+
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -61,7 +62,7 @@ public class swingSaver extends javax.swing.JFrame {
         lblSenha.setText("Senha:");
 
         txtEmail.setForeground(new java.awt.Color(204, 204, 204));
-        txtEmail.setText("email");
+        txtEmail.setText("");
         txtEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtEmailActionPerformed(evt);
@@ -69,7 +70,7 @@ public class swingSaver extends javax.swing.JFrame {
         });
 
         txtSenha.setForeground(new java.awt.Color(204, 204, 204));
-        txtSenha.setText("senha");
+        txtSenha.setText("");
         txtSenha.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         txtSenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -165,14 +166,14 @@ public class swingSaver extends javax.swing.JFrame {
                 String resultado = "LOGIN FEITO COM SUCESSO!";
                 lblResultado.setForeground(Color.blue);
                 lblResultado.setText(resultado.toString());
-//                Window frame;
-//                frame = new swingSaver();
-                dispose();
-                Dados.setVisible(true);
-//                frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
-                
-                
-                
+                new java.util.Timer().schedule(new TimerTask(){
+                    @Override
+                    public void run() {
+                        dispose();
+                        Dados.setVisible(true);
+                    }
+                },1000*5,0);
+
             }else{
                 String resultado = "USUÁRIO NÃO CADASTRADO";
                 lblResultado.setForeground(Color.red);

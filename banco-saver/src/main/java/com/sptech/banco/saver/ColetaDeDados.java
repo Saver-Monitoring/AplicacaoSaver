@@ -9,32 +9,38 @@ import com.github.britooo.looca.api.group.processos.ProcessoGrupo;
 import com.github.britooo.looca.api.group.servicos.ServicoGrupo;
 import com.github.britooo.looca.api.group.sistema.Sistema;
 import com.github.britooo.looca.api.group.temperatura.Temperatura;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.util.List;
 
 public class ColetaDeDados {
+        private Connection connection = new Connection();
+        private JdbcTemplate con = connection.getConnection();
+        Usuario usuario = new Usuario();
+        private Looca looca = new Looca();
 
-    public static void main(String[] args) {
-        Looca looca = new Looca();
-
-
-        Sistema sistema = looca.getSistema();
-        Memoria memoria = looca.getMemoria();
-        Processador processador = looca.getProcessador();
-        Temperatura temperatura = looca.getTemperatura();
+        private List idComputador = con.queryForList("SELECT idComputador FROM computador " +
+                        "inner join rack on rack.idRack = computador.fkRack " +
+                                "inner join acesso on acesso.fkRack = rack.idRack " +
+                                        "inner join usuario on acesso.fkUsuario = usuario.idUsuario" +
+                                                "where usuario.email = ?;", usuario.getEmail());
+        private List idRack = con.queryForList("SELECT idRack from rack " +
+                                "inner join acesso on acesso.fkRack = rack.idRack " +
+                                        "inner join usuario on acesso.fkUsuario = usuario.idUsuario" +
+                                                "where usuario.email = ?;", usuario.getEmail());
+        private Sistema sistema = looca.getSistema();
+        private Memoria memoria = looca.getMemoria();
+        private Processador processador = looca.getProcessador();
+        private Temperatura temperatura = looca.getTemperatura();
         //Criação do gerenciador
-        DiscoGrupo grupoDeDiscos = looca.getGrupoDeDiscos();
+        private DiscoGrupo grupoDeDiscos = looca.getGrupoDeDiscos();
         //Obtendo lista de discos a partir do getter
-        List<Disco> discos = grupoDeDiscos.getDiscos();
-        ServicoGrupo grupoDeServicos = looca.getGrupoDeServicos();
-        ProcessoGrupo todosProcessos = looca.getGrupoDeProcessos();
+        private List<Disco> discos = grupoDeDiscos.getDiscos();
+        private ServicoGrupo grupoDeServicos = looca.getGrupoDeServicos();
+        private ProcessoGrupo todosProcessos = looca.getGrupoDeProcessos();
 
-        System.out.println(sistema);
-        System.out.println(memoria);
-        System.out.println(processador);
-        System.out.println(temperatura);
-        System.out.println(discos);
-        System.out.println(grupoDeServicos);
-        System.out.println(todosProcessos);
+    public void insercaoDados() {
+            con.update("INSERT INTO historicoDados(fkComputador, fkRack, temperatura, usoHDD) VALUES " +
+                    "(?, ?, ?, ?, ?, ?) ", idComputador, idRack, temperatura, processador, discos);
     }
 }

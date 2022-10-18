@@ -1,5 +1,6 @@
 com\sptech\banco\saver\Usuario.class
 com\sptech\banco\saver\swingSaver.class
+com\sptech\banco\saver\swingSaver$5.class
 com\sptech\banco\saver\Connection.class
 com\sptech\banco\saver\swingSaver$2.class
 com\sptech\banco\saver\swingSaver$1.class
@@ -9,3 +10,4 @@ com\sptech\banco\saver\swingSaver$3.class
 com\sptech\banco\saver\DadosSistema.class
 com\sptech\banco\saver\swingSaver$4.class
 com\sptech\banco\saver\ColetaDeDados.class
+com\sptech\banco\saver\DadosSistema$2.class
