@@ -14,6 +14,7 @@ import com.github.britooo.looca.api.group.servicos.ServicoGrupo;
 import com.github.britooo.looca.api.group.sistema.Sistema;
 import com.github.britooo.looca.api.group.temperatura.Temperatura;
 import com.github.britooo.looca.api.util.Conversor;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.util.List;
 import java.util.TimerTask;
@@ -45,19 +46,41 @@ public class DadosSistema extends javax.swing.JFrame {
         this.setResizable(false);
         this.Tela();
     }
+    private Connection connection = new Connection();
+    private JdbcTemplate con = connection.getConnection();
+
+    private Usuario user;
+
+    public DadosSistema(Usuario user) {
+        this.user = user;
+        initComponents();
+        this.setResizable(false);
+        this.Tela();
+    }
 
     public void Tela() {
         ColetaDeDados coleta = new ColetaDeDados();
+
+        List idComputador = con.queryForList("SELECT idComputador FROM computador " +
+                "inner join rack on rack.idRack = computador.fkRack " +
+                "inner join acesso on acesso.fkRack = rack.idRack " +
+                "inner join usuario on acesso.fkUsuario = usuario.idUsuario " +
+                "where usuario.email = ?", user.getEmail());
+        List idRack = con.queryForList("SELECT idRack from rack " +
+                "inner join acesso on acesso.fkRack = rack.idRack " +
+                "inner join usuario on acesso.fkUsuario = usuario.idUsuario " +
+                "where usuario.email = ?", user.getEmail());
         new java.util.Timer().schedule(new TimerTask(){
             @Override
             public void run() {
                 lblSistema.setText(String.format("▶ Sistema Operacional: %s", sistema.getSistemaOperacional()));
-                lblProcessador.setText(String.format("▶ Processador: %s", processador.getUso()));
+                lblProcessador.setText(String.format("▶ Processador: %s", processador.getNome()));
                 lblMemoria.setText(String.format("▶ Memória Total: %s", Conversor.formatarBytes(memoria.getTotal())));
                 lblMemoria1.setText(String.format("▶ Memória Em uso: %s", Conversor.formatarBytes(memoria.getEmUso())));
                 lblMemoria2.setText(String.format("▶ Memória Disponível: %s", Conversor.formatarBytes(memoria.getDisponivel())));
+                System.out.println(idComputador.get(0) + "" + idRack.get(0));
 
-                coleta.insercaoDados(); //adicionar parametro, colocar query neste metodo.
+                //coleta.insercaoDados(idComputador.get(0), idRack.get(0)); //adicionar parametro, colocar query neste metodo.
             }
         },0,1000*2);
     }

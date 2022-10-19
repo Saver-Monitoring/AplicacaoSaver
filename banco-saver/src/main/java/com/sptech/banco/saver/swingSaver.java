@@ -148,14 +148,11 @@ public class swingSaver extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    public String getEmail() {
-        return txtEmail.getText();
-    }
+    private Usuario user = new Usuario();
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {
 //GEN-FIRST:event_btnEntrarActionPerformed
         Connection connection = new Connection();
         JdbcTemplate con = connection.getConnection();
-        Usuario user = new Usuario();
 
         user.setEmail(String.valueOf(txtEmail.getText()));
         user.setSenha(String.valueOf(txtSenha.getText()));
@@ -172,9 +169,10 @@ public class swingSaver extends javax.swing.JFrame {
                     @Override
                     public void run() {
                         dispose();
-                        new DadosSistema().setVisible(true);
+                        new DadosSistema(user).setVisible(true);
                     }
-                },1000*5);
+                },1000*3);
+                break;
 
             }else{
                 String resultado = "USUÁRIO NÃO CADASTRADO";
