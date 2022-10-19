@@ -16,18 +16,19 @@ import java.util.List;
 public class ColetaDeDados {
         private Connection connection = new Connection();
         private JdbcTemplate con = connection.getConnection();
-        Usuario usuario = new Usuario();
         private Looca looca = new Looca();
+
+        swingSaver user = new swingSaver();
 
         private List idComputador = con.queryForList("SELECT idComputador FROM computador " +
                         "inner join rack on rack.idRack = computador.fkRack " +
                                 "inner join acesso on acesso.fkRack = rack.idRack " +
-                                        "inner join usuario on acesso.fkUsuario = usuario.idUsuario" +
-                                                "where usuario.email = ?;", usuario.getEmail());
+                                        "inner join usuario on acesso.fkUsuario = usuario.idUsuario " +
+                                                "where usuario.email = ?", user.getEmail());
         private List idRack = con.queryForList("SELECT idRack from rack " +
                                 "inner join acesso on acesso.fkRack = rack.idRack " +
-                                        "inner join usuario on acesso.fkUsuario = usuario.idUsuario" +
-                                                "where usuario.email = ?;", usuario.getEmail());
+                                        "inner join usuario on acesso.fkUsuario = usuario.idUsuario " +
+                                                "where usuario.email = ?", user.getEmail());
         private Sistema sistema = looca.getSistema();
         private Memoria memoria = looca.getMemoria();
         private Processador processador = looca.getProcessador();
@@ -40,7 +41,7 @@ public class ColetaDeDados {
         private ProcessoGrupo todosProcessos = looca.getGrupoDeProcessos();
 
     public void insercaoDados() {
-            con.update("INSERT INTO historicoDados(fkComputador, fkRack, usoRAM, usoCPU) VALUES " +
-                    "(?, ?, ?, ?, ?, ?) ", idComputador, idRack, memoria.getEmUso(), processador.getUso());
+            con.update("insert into historicoDados(fkComputador, fkRack, usoRAM, usoCPU, dataHora) values (?,?,?,?, current_timestamp);",
+                    idComputador.get(0), idRack.get(0), memoria.getEmUso(), processador.getUso());
     }
 }

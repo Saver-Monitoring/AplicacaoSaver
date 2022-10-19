@@ -148,21 +148,23 @@ public class swingSaver extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    public String getEmail() {
+        return txtEmail.getText();
+    }
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {
 //GEN-FIRST:event_btnEntrarActionPerformed
         Connection connection = new Connection();
         JdbcTemplate con = connection.getConnection();
-        DadosSistema Dados = new DadosSistema();
+        Usuario user = new Usuario();
 
-        String email = String.valueOf(txtEmail.getText());
-        String senha = String.valueOf(txtSenha.getText());
+        user.setEmail(String.valueOf(txtEmail.getText()));
+        user.setSenha(String.valueOf(txtSenha.getText()));
         
         List<Usuario> listaUsuarios = con.query("SELECT email, senha FROM usuario", new BeanPropertyRowMapper(Usuario.class));
         
         
         for (Usuario itemUsuario : listaUsuarios){
-            if (itemUsuario.getEmail().equals(email) && itemUsuario.getSenha().equals(senha)){
+            if (itemUsuario.getEmail().equals(user.getEmail()) && itemUsuario.getSenha().equals(user.getSenha())){
                 String resultado = "LOGIN FEITO COM SUCESSO!";
                 lblResultado.setForeground(Color.blue);
                 lblResultado.setText(resultado.toString());
@@ -170,7 +172,7 @@ public class swingSaver extends javax.swing.JFrame {
                     @Override
                     public void run() {
                         dispose();
-                        Dados.setVisible(true);
+                        new DadosSistema().setVisible(true);
                     }
                 },1000*5);
 

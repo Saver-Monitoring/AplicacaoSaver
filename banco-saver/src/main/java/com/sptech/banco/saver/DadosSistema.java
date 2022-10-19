@@ -13,6 +13,8 @@ import com.github.britooo.looca.api.group.processos.ProcessoGrupo;
 import com.github.britooo.looca.api.group.servicos.ServicoGrupo;
 import com.github.britooo.looca.api.group.sistema.Sistema;
 import com.github.britooo.looca.api.group.temperatura.Temperatura;
+import com.github.britooo.looca.api.util.Conversor;
+
 import java.util.List;
 import java.util.TimerTask;
 
@@ -45,14 +47,17 @@ public class DadosSistema extends javax.swing.JFrame {
     }
 
     public void Tela() {
+        ColetaDeDados coleta = new ColetaDeDados();
         new java.util.Timer().schedule(new TimerTask(){
             @Override
             public void run() {
                 lblSistema.setText(String.format("▶ Sistema Operacional: %s", sistema.getSistemaOperacional()));
-                lblProcessador.setText(String.format("▶ Processador: %s", processador.getNome()));
-                lblMemoria.setText(String.format("▶ Memória Total: %s", memoria.getTotal()));
-                lblMemoria1.setText(String.format("▶ Memória Em uso: %s", memoria.getEmUso()));
-                lblMemoria2.setText(String.format("▶ Memória Disponível: %s", memoria.getDisponivel()));
+                lblProcessador.setText(String.format("▶ Processador: %s", processador.getUso()));
+                lblMemoria.setText(String.format("▶ Memória Total: %s", Conversor.formatarBytes(memoria.getTotal())));
+                lblMemoria1.setText(String.format("▶ Memória Em uso: %s", Conversor.formatarBytes(memoria.getEmUso())));
+                lblMemoria2.setText(String.format("▶ Memória Disponível: %s", Conversor.formatarBytes(memoria.getDisponivel())));
+
+                coleta.insercaoDados(); //adicionar parametro, colocar query neste metodo.
             }
         },0,1000*2);
     }
