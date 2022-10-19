@@ -164,7 +164,7 @@ public class swingSaver extends javax.swing.JFrame {
             if (itemUsuario.getEmail().equals(user.getEmail()) && itemUsuario.getSenha().equals(user.getSenha())){
                 String resultado = "LOGIN FEITO COM SUCESSO!";
                 lblResultado.setForeground(Color.blue);
-                lblResultado.setText(resultado.toString());
+                lblResultado.setText(resultado);
                 new java.util.Timer().schedule(new TimerTask(){
                     @Override
                     public void run() {
@@ -177,7 +177,7 @@ public class swingSaver extends javax.swing.JFrame {
             }else{
                 String resultado = "USUÁRIO NÃO CADASTRADO";
                 lblResultado.setForeground(Color.red);
-                lblResultado.setText(resultado.toString());
+                lblResultado.setText(resultado);
             }
         }
     }//GEN-LAST:event_btnEntrarActionPerformed

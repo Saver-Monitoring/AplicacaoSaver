@@ -78,9 +78,9 @@ public class DadosSistema extends javax.swing.JFrame {
                 lblMemoria.setText(String.format("▶ Memória Total: %s", Conversor.formatarBytes(memoria.getTotal())));
                 lblMemoria1.setText(String.format("▶ Memória Em uso: %s", Conversor.formatarBytes(memoria.getEmUso())));
                 lblMemoria2.setText(String.format("▶ Memória Disponível: %s", Conversor.formatarBytes(memoria.getDisponivel())));
-                System.out.println(idComputador.get(0) + "" + idRack.get(0));
+                //System.out.println(idComputador.get(0).toString().replaceAll("[^0-9]+", " ") + "" + idRack.get(0).toString().replaceAll("[^0-9]+", " "));
 
-                //coleta.insercaoDados(idComputador.get(0), idRack.get(0)); //adicionar parametro, colocar query neste metodo.
+                coleta.insercaoDados(idComputador.get(0).toString().replaceAll("[^0-9]+", " "), idRack.get(0).toString().replaceAll("[^0-9]+", " ")); //adicionar parametro, colocar query neste metodo.
             }
         },0,1000*2);
     }

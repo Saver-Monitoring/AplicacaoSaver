@@ -2,6 +2,11 @@
 <project version="4">
   <component name="RemoteRepositoriesConfiguration">
     <remote-repository>
+      <option name="id" value="release-repository" />
+      <option name="name" value="release-repository" />
+      <option name="url" value="https://artefatos.jfrog.io/artifactory/virtual-maven-releases" />
+    </remote-repository>
+    <remote-repository>
       <option name="id" value="central" />
       <option name="name" value="Maven Central repository" />
       <option name="url" value="https://repo1.maven.org/maven2" />
@@ -19,6 +24,11 @@
     <remote-repository>
       <option name="id" value="snapshots" />
       <option name="name" value="virtual-maven-snapshots" />
+      <option name="url" value="https://artefatos.jfrog.io/artifactory/virtual-maven-snapshots" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="snapshot-repository" />
+      <option name="name" value="snapshot-repository" />
       <option name="url" value="https://artefatos.jfrog.io/artifactory/virtual-maven-snapshots" />
     </remote-repository>
   </component>

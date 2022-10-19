@@ -7,6 +7,8 @@ import com.github.britooo.looca.api.group.discos.Disco;
 import com.github.britooo.looca.api.group.discos.DiscoGrupo;
 import com.github.britooo.looca.api.group.memoria.Memoria;
 import com.github.britooo.looca.api.group.processador.Processador;
+import com.github.britooo.looca.api.group.sistema.Sistema;
+import com.github.britooo.looca.api.util.Conversor;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 public class TesteBancoSaver {
@@ -16,9 +18,6 @@ public class TesteBancoSaver {
         Connection connection = new Connection();
         JdbcTemplate con = connection.getConnection();
         Looca looca = new Looca();
-
-        Processador processador = looca.getProcessador();
-        Memoria memoria = looca.getMemoria();
 
         // Para buscar informações devemos utilizar o comando queryForList ou query,
         // exemplo de uso do queryForList:
@@ -30,9 +29,12 @@ public class TesteBancoSaver {
 
         DiscoGrupo grupoDeDiscos = looca.getGrupoDeDiscos();
         List<Disco> discos = grupoDeDiscos.getDiscos();
+        Processador processador = looca.getProcessador();
+        Memoria memoria = looca.getMemoria();
+        Sistema sistema = looca.getSistema();
 
-        System.out.println(memoria.getTotal());
-        System.out.println(String.format("%s GB", discos.get(0).getTamanho()));
+        System.out.println(processador.getId());
+        System.out.println(String.format("%s GB", Conversor.formatarBytes(discos.get(0).getTamanho())));
 
 
     }
