@@ -9,6 +9,7 @@ import com.github.britooo.looca.api.group.processos.ProcessoGrupo;
 import com.github.britooo.looca.api.group.servicos.ServicoGrupo;
 import com.github.britooo.looca.api.group.sistema.Sistema;
 import com.github.britooo.looca.api.group.temperatura.Temperatura;
+import com.github.britooo.looca.api.util.Conversor;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.util.List;
@@ -32,6 +33,6 @@ public class ColetaDeDados {
 
     public void insercaoDados(Object idComputador, Object idRack) {
             con.update("insert into historicoDados(fkComputador, fkRack, usoRAM, usoCPU, dataHora) values (?,?,?,?, current_timestamp);",
-                    idComputador, idRack, memoria.getEmUso(), processador.getUso());
+                    idComputador, idRack, Conversor.formatarBytes(memoria.getEmUso()).replaceAll("[^0-9-,]+", "").replace(",","."), String.format("%.2f",processador.getUso()).replace(",","."));
     }
 }

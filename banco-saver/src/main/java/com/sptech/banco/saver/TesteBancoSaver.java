@@ -33,8 +33,8 @@ public class TesteBancoSaver {
         Memoria memoria = looca.getMemoria();
         Sistema sistema = looca.getSistema();
 
-        System.out.println(processador.getId());
-        System.out.println(String.format("%s GB", Conversor.formatarBytes(discos.get(0).getTamanho())));
+        System.out.println(Conversor.formatarBytes(memoria.getEmUso()).replaceAll("[^0-9-,]+", "").replace(",","."));
+        System.out.println(String.format("%.2f",processador.getUso()));
 
 
     }
