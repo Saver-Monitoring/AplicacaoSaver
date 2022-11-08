@@ -149,10 +149,16 @@ public class swingSaver extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     private Usuario user = new Usuario();
+
+    public Usuario getUser() {
+        return user;
+    }
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {
 //GEN-FIRST:event_btnEntrarActionPerformed
         Connection connection = new Connection();
         JdbcTemplate con = connection.getConnection();
+
+        ColetaDeDados coleta = new ColetaDeDados();
 
         user.setEmail(String.valueOf(txtEmail.getText()));
         user.setSenha(String.valueOf(txtSenha.getText()));
@@ -172,6 +178,8 @@ public class swingSaver extends javax.swing.JFrame {
                         new DadosSistema(user).setVisible(true);
                     }
                 },1000*3);
+                    con.update("insert into acesso(fkRack, fkEmpresa, fkUsuario) values (?, ?, ?)",
+                            coleta.getIdRack(), user.getIdEmpresa(), user.getIdUsuario());
                 break;
 
             }else{

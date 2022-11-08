@@ -60,16 +60,11 @@ public class DadosSistema extends javax.swing.JFrame {
 
     public void Tela() {
         ColetaDeDados coleta = new ColetaDeDados();
+        coleta.validaPC(user);
 
-        List idComputador = con.queryForList("SELECT idComputador FROM computador " +
-                "inner join rack on rack.idRack = computador.fkRack " +
-                "inner join acesso on acesso.fkRack = rack.idRack " +
-                "inner join usuario on acesso.fkUsuario = usuario.idUsuario " +
-                "where usuario.email = ?", user.getEmail());
-        List idRack = con.queryForList("SELECT idRack from rack " +
-                "inner join acesso on acesso.fkRack = rack.idRack " +
-                "inner join usuario on acesso.fkUsuario = usuario.idUsuario " +
-                "where usuario.email = ?", user.getEmail());
+        List idComputador = coleta.getIdComputador();
+        List idRack = coleta.getIdRack();
+
         new java.util.Timer().schedule(new TimerTask(){
             @Override
             public void run() {
@@ -84,8 +79,6 @@ public class DadosSistema extends javax.swing.JFrame {
             }
         },0,1000*2);
     }
-    
-//    lblFabricanteValue.setText(String.format("▶ %s", sistema.getFabricante()));
 
     /**
      * This method is called from within the constructor to initialize the form.
