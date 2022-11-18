@@ -7,14 +7,24 @@ import java.util.List;
 public class Usuario {
     private String email;
     private String senha;
+    private String nome;
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
     private Connection connection = new Connection();
     private JdbcTemplate con = connection.getConnection();
 
-    public List getIdEmpresa() {
-        return con.queryForList("select fkEmpresa from usuario where email = ?", email);
+    public String getIdEmpresa() {
+        return String.valueOf(con.queryForList("select fkEmpresa from usuario where email = ?", email));
     }
-    public List getIdUsuario() {
-        return con.queryForList("select idUsuario from usuario where email = ?", email);
+    public String getIdUsuario() {
+        return String.valueOf(con.queryForList("select idUsuario from usuario where email = ?", email));
     }
 
     

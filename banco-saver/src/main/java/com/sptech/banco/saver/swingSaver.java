@@ -160,9 +160,14 @@ public class swingSaver extends javax.swing.JFrame {
 
         ColetaDeDados coleta = new ColetaDeDados();
 
+        List idRack = con.queryForList("SELECT idRack from rack " +
+                "inner join acesso on acesso.fkRack = rack.idRack " +
+                "inner join usuario on acesso.fkUsuario = usuario.idUsuario " +
+                "where usuario.email = ?", user.getEmail());
+
         user.setEmail(String.valueOf(txtEmail.getText()));
         user.setSenha(String.valueOf(txtSenha.getText()));
-        
+
         List<Usuario> listaUsuarios = con.query("SELECT email, senha FROM usuario", new BeanPropertyRowMapper(Usuario.class));
         
         
@@ -171,15 +176,20 @@ public class swingSaver extends javax.swing.JFrame {
                 String resultado = "LOGIN FEITO COM SUCESSO!";
                 lblResultado.setForeground(Color.blue);
                 lblResultado.setText(resultado);
+                //coleta.isPcValido(user);
+                System.out.println(String.valueOf(idRack).replaceAll("[^0-9-,]+", ""));
+                user.setNome(String.valueOf(con.queryForList("select nomeUsuario from usuario where email = ?", txtEmail.getText())));
+                //con.update("insert into acesso(fkRack, fkEmpresa, fkUsuario, dataHora) values (?, ?, ?, current_timestamp)",
+                //        String.valueOf(idRack).replaceAll("[^0-9-,]+", ""),
+                //        user.getIdEmpresa().replaceAll("[^0-9-,]+", ""),
+                //        user.getIdUsuario().replaceAll("[^0-9-,]+", ""));
                 new java.util.Timer().schedule(new TimerTask(){
                     @Override
                     public void run() {
                         dispose();
-                        new DadosSistema(user).setVisible(true);
+                        new menuSaver(user).setVisible(true);
                     }
                 },1000*3);
-                    con.update("insert into acesso(fkRack, fkEmpresa, fkUsuario) values (?, ?, ?)",
-                            coleta.getIdRack(), user.getIdEmpresa(), user.getIdUsuario());
                 break;
 
             }else{

@@ -16,5 +16,15 @@
       <option name="name" value="JBoss Community repository" />
       <option name="url" value="https://repository.jboss.org/nexus/content/repositories/public/" />
     </remote-repository>
+    <remote-repository>
+      <option name="id" value="central" />
+      <option name="name" value="virtual-maven-releases" />
+      <option name="url" value="https://artefatos.jfrog.io/artifactory/virtual-maven-releases" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="snapshots" />
+      <option name="name" value="virtual-maven-snapshots" />
+      <option name="url" value="https://artefatos.jfrog.io/artifactory/virtual-maven-snapshots" />
+    </remote-repository>
   </component>
 </project>

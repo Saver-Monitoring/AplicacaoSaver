@@ -1,34 +1,26 @@
 package com.sptech.banco.saver;
 
 import com.github.britooo.looca.api.core.Looca;
-import com.github.britooo.looca.api.group.discos.Disco;
 import com.github.britooo.looca.api.group.discos.DiscoGrupo;
 import com.github.britooo.looca.api.group.memoria.Memoria;
 import com.github.britooo.looca.api.group.processador.Processador;
-import com.github.britooo.looca.api.group.processos.ProcessoGrupo;
-import com.github.britooo.looca.api.group.servicos.ServicoGrupo;
 import com.github.britooo.looca.api.group.sistema.Sistema;
 import com.github.britooo.looca.api.group.temperatura.Temperatura;
 import com.github.britooo.looca.api.util.Conversor;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 public class ColetaDeDados {
         private Connection connection = new Connection();
         private JdbcTemplate con = connection.getConnection();
         private Looca looca = new Looca();
-
-        private Sistema sistema = looca.getSistema();
         private Memoria memoria = looca.getMemoria();
+        private Sistema sistema = looca.getSistema();
         private Processador processador = looca.getProcessador();
-        private Temperatura temperatura = looca.getTemperatura();
-        //Criação do gerenciador
-        private DiscoGrupo grupoDeDiscos = looca.getGrupoDeDiscos();
-        //Obtendo lista de discos a partir do getter
-        private List<Disco> discos = grupoDeDiscos.getDiscos();
-        private ServicoGrupo grupoDeServicos = looca.getGrupoDeServicos();
-        private ProcessoGrupo todosProcessos = looca.getGrupoDeProcessos();
 
         private swingSaver saver = new swingSaver();
 
@@ -52,9 +44,30 @@ public class ColetaDeDados {
                 return idRack;
         }
 
-        public void validaPC(Usuario user){
+        public void gerarLog() throws IOException, InterruptedException {
+                FileWriter arq = new FileWriter("C:/Saver/log.txt");
+                PrintWriter gravarArq = new PrintWriter(arq);
+//"C:\Saver"
+                gravarArq.println(String.format("\nSistema operacional: %s"
+                                + "\nProcessador: %s"
+                                + "\n Memória total: %s"
+                                + "\n Memória em uso: %s"
+                                + "\n Memória disponível: %s",
+                        sistema.getSistemaOperacional(),
+                        processador.getNome(),
+                        Conversor.formatarBytes(memoria.getTotal()),
+                        Conversor.formatarBytes(memoria.getEmUso()),
+                        Conversor.formatarBytes(memoria.getDisponivel())));
+
+                arq.close();
+        }
+
+        public void isPcValido(Usuario user){
+
+                System.out.println(idRack.isEmpty());
                 if(idRack.isEmpty()){
-                        con.update("insert into rack(nome, fkEmpresa) values (?, ?)", "rack1", user.getIdEmpresa());
+                        con.update("insert into rack(nome, fkEmpresa) values ('rack1', ?)",  user.getIdEmpresa());
+
                 } else {
                         if(idComputador.isEmpty()){
                                 con.update("insert into computador(fkRack, sistOperacional, processador, qtdRAM) values (?, ?, ?, ?)",

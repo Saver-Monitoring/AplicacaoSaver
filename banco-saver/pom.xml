@@ -69,12 +69,17 @@
             <version>8.0.31</version>
         </dependency>
 
-
         <!-- https://mvnrepository.com/artifact/com.github.britooo/looca-api -->
         <dependency>
             <groupId>com.github.britooo</groupId>
             <artifactId>looca-api</artifactId>
             <version>2.1.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20220924</version>
         </dependency>
     </dependencies>
 </project>
