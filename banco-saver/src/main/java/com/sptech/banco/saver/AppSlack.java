@@ -14,7 +14,7 @@ import org.json.JSONObject;
  */
 public class AppSlack {
 
-    public static void mandaMensagemSlack(Usuario user) throws IOException, InterruptedException {
+    public static void mandaMensagemSlack(Usuario user) throws IOException, InterruptedException{
         Looca looca = new Looca();
 
         Sistema sistema = looca.getSistema();
@@ -22,15 +22,31 @@ public class AppSlack {
         Memoria memoria = looca.getMemoria();
 
         JSONObject json = new JSONObject();
-        json.put("text", String.format("Ola %s esses são alguns dados do seu pc"
-                + "\nSeu Sistema Operacional: %s"
-                + "\nSeu Processador: %s"
-                + "\nMemória Total: %s"
-                + "\nMemória Em uso: %s"
-                + "\nMemória Disponível: %s",
-                String.valueOf(user.getNome()).replaceAll("nomeUsuario","").replace("{","").replace("[","").replace("]","").replace("}","").replace("=",""),
-                sistema.getSistemaOperacional(), processador.getNome(), Conversor.formatarBytes(memoria.getTotal()),
-                Conversor.formatarBytes(memoria.getEmUso()), Conversor.formatarBytes(memoria.getDisponivel())));
+        Long alertaCritico = 12884901888L;
+
+        if(memoria.getEmUso() > alertaCritico){
+            json.put("text", String.format("Usuario: %s."
+                            + "\nNa entrada a maquina apresenta uso elevado de memoria:"
+                            + "\nSistema Operacional: %s"
+                            + "\nProcessadro: %s"
+                            + "\nTotal de Memoria da maquina: %s"
+                            + "\nMemoria em uso no momento: %s"
+                            + "\nUma ação é nessessaria?",
+                    String.valueOf(user.getNome()).replaceAll("nomeUsuario","").replace("{","").replace("[","").replace("]","").replace("}","").replace("=",""),
+                    sistema.getSistemaOperacional(), processador.getNome(), Conversor.formatarBytes(memoria.getTotal()),
+                    Conversor.formatarBytes(memoria.getEmUso())));
+        }else{
+            json.put("text", String.format("Usuario: %s."
+                            + "\nEsses são os dados da maquina no momento da entrada:"
+                            + "\nSistema Operacional: %s"
+                            + "\nProcessadro: %s"
+                            + "\nTotal de Memoria da maquina: %s"
+                            + "\nMemoria em uso no momento: %s",
+                    String.valueOf(user.getNome()).replaceAll("nomeUsuario","").replace("{","").replace("[","").replace("]","").replace("}","").replace("=",""),
+                    sistema.getSistemaOperacional(), processador.getNome(), Conversor.formatarBytes(memoria.getTotal()),
+                    Conversor.formatarBytes(memoria.getEmUso())));
+        }
+
         Slack.sendMessage(json);
     }
 }

@@ -17,21 +17,21 @@ import org.springframework.jdbc.core.JdbcTemplate;
 public class Slack {
 
     private static HttpClient client = HttpClient.newHttpClient();
-    private static final String URL = "https://hooks.slack.com/services/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";
-    
+    private static final String URL = "https://hooks.slack.com/services/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";
+
     private static Connection connection = new Connection();
     private static JdbcTemplate con = connection.getConnection();
 
     public static void sendMessage(JSONObject content) throws IOException, InterruptedException {
 
         HttpRequest request = HttpRequest.newBuilder(
-                URI.create(URL)).header("accept", "application/json")
+                        URI.create(URL)).header("accept", "application/json")
                 .POST(HttpRequest.BodyPublishers.ofString(content.toString()))
                 .build();
-        
+
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
-        
+
         System.out.println(String.format("Status: %s", response.statusCode()));
         System.out.println(String.format("Response: %s", response.body()));
 

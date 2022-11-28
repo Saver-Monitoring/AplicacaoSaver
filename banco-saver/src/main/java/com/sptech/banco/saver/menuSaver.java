@@ -5,6 +5,7 @@
 package com.sptech.banco.saver;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.TimerTask;
 
 /**
@@ -19,10 +20,11 @@ public class menuSaver extends javax.swing.JFrame {
     public menuSaver() {
         initComponents();
     }
-    private static Usuario user;
+    private Usuario user;
     public menuSaver(Usuario user) {
         initComponents();
         this.user = user;
+        this.Insercoes();
     }
 
     /**
@@ -199,6 +201,29 @@ public class menuSaver extends javax.swing.JFrame {
         },1000*1);
     }//GEN-LAST:event_btnT4ActionPerformed
 
+    private void Insercoes() {
+        ColetaDeDados coleta = new ColetaDeDados(user);
+        List idComputador = coleta.getIdComputador();
+        List idRack = coleta.getIdRack();
+        AppSlack slack = new AppSlack();
+        System.out.println(String.valueOf(idComputador.get(0)).replaceAll("[^0-9]+", ""));
+        System.out.println(String.valueOf(idRack.get(0)).replaceAll("[^0-9]+", ""));
+
+        new java.util.Timer().schedule(new TimerTask(){
+            @Override
+            public void run() {
+                try {
+                    coleta.gerarLog();
+                    slack.mandaMensagemSlack(user);
+                } catch (IOException | InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+                coleta.insercaoDados(String.valueOf(idComputador.get(0)).replaceAll("[^0-9]+", ""),
+                        String.valueOf(idRack.get(0)).replaceAll("[^0-9]+", ""));
+            }
+        },0,1000*2);
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -228,17 +253,10 @@ public class menuSaver extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
 
                 new menuSaver().setVisible(true);
-                AppSlack appSlack = new AppSlack();
-                try {
-                    appSlack.mandaMensagemSlack(user);
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
             }
         });
     }
