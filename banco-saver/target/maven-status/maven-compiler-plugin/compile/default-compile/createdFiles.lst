@@ -10,12 +10,11 @@ com\sptech\banco\saver\swingSaver$2.class
 com\sptech\banco\saver\Slack.class
 com\sptech\banco\saver\Tela1.class
 com\sptech\banco\saver\menuSaver$5.class
-com\sptech\banco\saver\DadosSistema.class
 com\sptech\banco\saver\Tela2.class
 com\sptech\banco\saver\Tela4$1.class
+com\sptech\banco\saver\menuSaver$12.class
 com\sptech\banco\saver\swingSaver$4.class
 com\sptech\banco\saver\Tela3$1.class
-com\sptech\banco\saver\DadosSistema$2.class
 com\sptech\banco\saver\menuSaver$11.class
 com\sptech\banco\saver\menuSaver$8.class
 com\sptech\banco\saver\Tela4.class
@@ -27,7 +26,6 @@ com\sptech\banco\saver\Connection.class
 com\sptech\banco\saver\swingSaver$1.class
 com\sptech\banco\saver\Tela4$2.class
 com\sptech\banco\saver\menuSaver$6.class
-com\sptech\banco\saver\DadosSistema$1.class
 com\sptech\banco\saver\TesteBancoSaver.class
 com\sptech\banco\saver\swingSaver$3.class
 com\sptech\banco\saver\Tela3$2.class

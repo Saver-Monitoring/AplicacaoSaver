@@ -22,8 +22,8 @@ public class menuSaver extends javax.swing.JFrame {
     }
     private Usuario user;
     public menuSaver(Usuario user) {
-        initComponents();
         this.user = user;
+        initComponents();
         this.Insercoes();
     }
 
@@ -39,9 +39,8 @@ public class menuSaver extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         btnT1 = new javax.swing.JButton();
         btnT2 = new javax.swing.JButton();
-        btnT3 = new javax.swing.JButton();
-        btnT4 = new javax.swing.JButton();
         btnSairMenu = new javax.swing.JButton();
+        jTextField1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -49,7 +48,7 @@ public class menuSaver extends javax.swing.JFrame {
 
         btnT1.setBackground(new java.awt.Color(51, 102, 255));
         btnT1.setFont(new java.awt.Font("Kalimati", 1, 14)); // NOI18N
-        btnT1.setText("Tela 1");
+        btnT1.setText("Monitor CPU");
         btnT1.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.darkGray, null));
         btnT1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -59,31 +58,11 @@ public class menuSaver extends javax.swing.JFrame {
 
         btnT2.setBackground(new java.awt.Color(51, 102, 255));
         btnT2.setFont(new java.awt.Font("Kalimati", 1, 14)); // NOI18N
-        btnT2.setText("Tela 2");
+        btnT2.setText("Monitor RAM");
         btnT2.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.darkGray, null));
         btnT2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnT2ActionPerformed(evt);
-            }
-        });
-
-        btnT3.setBackground(new java.awt.Color(51, 102, 255));
-        btnT3.setFont(new java.awt.Font("Kalimati", 1, 14)); // NOI18N
-        btnT3.setText("Tela 3");
-        btnT3.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.darkGray, null));
-        btnT3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnT3ActionPerformed(evt);
-            }
-        });
-
-        btnT4.setBackground(new java.awt.Color(51, 102, 255));
-        btnT4.setFont(new java.awt.Font("Kalimati", 1, 14)); // NOI18N
-        btnT4.setText("Tela 4");
-        btnT4.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.darkGray, null));
-        btnT4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnT4ActionPerformed(evt);
             }
         });
 
@@ -96,6 +75,8 @@ public class menuSaver extends javax.swing.JFrame {
             }
         });
 
+        jTextField1.setText("jTextField1");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -103,7 +84,9 @@ public class menuSaver extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap()
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel2))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(23, 23, 23)
@@ -111,32 +94,28 @@ public class menuSaver extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(98, 98, 98)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnT1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnT3, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btnT1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 107, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnT2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnT4, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btnT2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(107, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(58, 58, 58)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnT1)
+                    .addComponent(btnT1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnT2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(74, 74, 74)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnT3)
-                    .addComponent(btnT4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 127, Short.MAX_VALUE)
                 .addComponent(btnSairMenu)
                 .addGap(21, 21, 21))
         );
+
+        jTextField1.setText(String.format("Olá %s", user.getNome()));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -177,30 +156,6 @@ public class menuSaver extends javax.swing.JFrame {
         },1000*1);
     }//GEN-LAST:event_btnT2ActionPerformed
 
-    private void btnT3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnT3ActionPerformed
-        // TODO add your handling code here:
-
-        new java.util.Timer().schedule(new TimerTask(){
-            @Override
-            public void run() {
-                dispose();
-                new Tela3(user).setVisible(true);
-            }
-        },1000*1);
-    }//GEN-LAST:event_btnT3ActionPerformed
-
-    private void btnT4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnT4ActionPerformed
-        // TODO add your handling code here:
-
-        new java.util.Timer().schedule(new TimerTask(){
-            @Override
-            public void run() {
-                dispose();
-                new Tela4(user).setVisible(true);
-            }
-        },1000*1);
-    }//GEN-LAST:event_btnT4ActionPerformed
-
     private void Insercoes() {
         ColetaDeDados coleta = new ColetaDeDados(user);
         List idComputador = coleta.getIdComputador();
@@ -214,6 +169,10 @@ public class menuSaver extends javax.swing.JFrame {
             public void run() {
                 try {
                     coleta.gerarLog();
+                } catch (IOException | InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+                try {
                     slack.mandaMensagemSlack(user);
                 } catch (IOException | InterruptedException e) {
                     throw new RuntimeException(e);
@@ -265,8 +224,7 @@ public class menuSaver extends javax.swing.JFrame {
     private javax.swing.JButton btnSairMenu;
     private javax.swing.JButton btnT1;
     private javax.swing.JButton btnT2;
-    private javax.swing.JButton btnT3;
-    private javax.swing.JButton btnT4;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }
